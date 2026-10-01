@@ -78,6 +78,8 @@ drop financial_product_rebuilt_2012
 generate byte finance_liquid = ///
     (savings_same > 0 | financial_product_rebuilt > 0) ///
     if !missing(savings_same, financial_product_rebuilt)
+replace finance_liquid = (savings_same > 1 | financial_product_rebuilt > 0) ///
+    if wave == 2012 & !missing(savings_same, financial_product_rebuilt)
 compress
 save "$DATA/cfps_entrants_finance_reconstructed.dta", replace
 
