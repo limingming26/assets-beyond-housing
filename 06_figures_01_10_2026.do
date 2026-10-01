@@ -61,7 +61,7 @@ twoway (rcap ci_lb_pct ci_ub_pct x if female==1,lcolor(black)) ///
  ylabel(0(20)80,angle(0) labsize(small) nogrid) yscale(range(0 80)) xscale(range(-.22 1.22)) ///
  xtitle("") ytitle("Adjusted probability of S&E entry (%)",size(small)) ///
  title("A. Adjusted probabilities",size(medsmall) color(black) pos(11)) ///
- legend(order(2 "Women" 4 "Men") rows(1) pos(12) ring(0) size(small) region(lcolor(none))) ///
+ legend(order(2 "Women" 4 "Men") rows(1) pos(6) ring(1) size(small) region(lcolor(black) lwidth(thin) fcolor(white) margin(small))) ///
  graphregion(color(white)) plotregion(lcolor(none)) name(prob,replace)
 import delimited using "$TABLES/main_resource_contrasts_01_10_2026.csv",clear
 keep if specification=="H3_resource_sequence"
@@ -76,7 +76,7 @@ twoway (rcap ci_lb_pp ci_ub_pp y,horizontal lcolor(black)) ///
  xtitle("Housing-plus minus housing-concentrated" "(percentage points)",size(small)) ///
  title("B. Housing-plus contrasts",size(medsmall) color(black) pos(11)) legend(off) ///
  graphregion(color(white)) plotregion(lcolor(none)) name(con,replace)
-graph combine prob con, cols(2) xsize(9.3) ysize(4.1) graphregion(color(white)) imargin(small)
+graph combine prob con, cols(2) xsize(9.3) ysize(4.4) graphregion(color(white)) imargin(small)
 graph export "$FIGURES/Figure_1_01_10_2026.png",width(4200) replace
 graph export "$FIGURES/Figure_1_01_10_2026.pdf",replace
 graph export "$FIGURES/Figure_1_01_10_2026.eps",replace
@@ -102,7 +102,7 @@ twoway (pcspike probability_pct0 x0 probability_pct1 x1,lcolor(gs12) lwidth(medt
  ylabel(0(20)80,angle(0) labsize(small) glcolor(gs14) glwidth(vthin)) ///
  yscale(range(0 80)) xscale(range(.55 5.45)) ///
  xtitle("") ytitle("Adjusted probability (%)",size(small)) ///
- legend(order(3 "Housing-concentrated" 5 "Housing-plus") rows(1) size(small) region(lcolor(none))) ///
+ legend(order(3 "Housing-concentrated" 5 "Housing-plus") rows(1) size(small) region(lcolor(black) lwidth(thin) fcolor(white) margin(small))) ///
  by(panel,cols(1) note("") legend(pos(6)) graphregion(color(white)) imargin(medsmall)) ///
  subtitle(,pos(11) color(black) bcolor(white) justification(left) nobexpand) ///
  xsize(6.2) ysize(7.2) graphregion(color(white)) plotregion(color(white) lcolor(none))
@@ -123,8 +123,8 @@ twoway (line cumulative wealth_plot if housing_portfolio==0,sort connect(J) lcol
  (line cumulative wealth_plot if housing_portfolio==1,sort connect(J) lcolor(black) lpattern(dash)), ///
  xlabel(`ticks',labsize(small)) ylabel(0(.2)1,format(%3.1f) angle(0) labsize(small) nogrid) ///
  xtitle("Total net wealth (RMB 10,000; IHS-scaled axis)",size(small)) ytitle("Cumulative share",size(small)) ///
- legend(order(1 "Housing-concentrated" 2 "Housing-plus") rows(2) pos(5) ring(0) size(small) region(lcolor(none))) ///
- xsize(6.2) ysize(3.7) graphregion(color(white)) plotregion(color(white) lcolor(none))
+ legend(order(1 "Housing-concentrated" 2 "Housing-plus") rows(1) pos(6) ring(1) size(small) region(lcolor(black) lwidth(thin) fcolor(white) margin(small))) ///
+ xsize(6.2) ysize(4.0) graphregion(color(white)) plotregion(color(white) lcolor(none))
 graph export "$FIGURES/Figure_B1_01_10_2026.png",width(3000) replace
 graph export "$FIGURES/Figure_B1_01_10_2026.pdf",replace
 graph export "$FIGURES/Figure_B1_01_10_2026.eps",replace
@@ -136,8 +136,8 @@ twoway (line density x if postsecondary_entry==0,lpattern(dash) lcolor(black)) /
  (line density x if postsecondary_entry==1,lpattern(solid) lcolor(black)), ///
  xlabel(0(.2)1,format(%3.1f) labsize(small)) ylabel(,format(%9.0f) angle(0) nogrid labsize(small)) ///
  xtitle("Estimated probability of postsecondary entry",size(small)) ytitle("Density",size(small)) ///
- legend(order(2 "Entrants" 1 "Non-entrants") rows(2) pos(2) ring(0) size(small) region(lcolor(none))) ///
- xsize(6.2) ysize(3.7) graphregion(color(white)) plotregion(color(white) lcolor(none))
+ legend(order(2 "Entrants" 1 "Non-entrants") rows(1) pos(6) ring(1) size(small) region(lcolor(black) lwidth(thin) fcolor(white) margin(small))) ///
+ xsize(6.2) ysize(4.0) graphregion(color(white)) plotregion(color(white) lcolor(none))
 graph export "$FIGURES/Figure_D1_01_10_2026.png",width(3000) replace
 graph export "$FIGURES/Figure_D1_01_10_2026.pdf",replace
 graph export "$FIGURES/Figure_D1_01_10_2026.eps",replace

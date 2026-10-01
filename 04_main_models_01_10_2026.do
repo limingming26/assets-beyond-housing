@@ -622,6 +622,27 @@ post_resource_slopes ihs_hh_income_pc_imp, ///
 post_resource_slopes ihs_total_asset_same, ///
     spec("D3_income_wealth_by_gender") modeln(`model_N')
 post_probability_contrasts, spec("D3_income_wealth_by_gender") modeln(`model_N')
+quietly regress stem i.female##i.housing_portfolio ///
+    i.female#c.ihs_hh_income_pc_imp ///
+    i.female#c.ihs_total_asset_same ///
+    $C_OUTCOME_WEALTH, vce(robust)
+local model_N = e(N)
+local model_df = e(df_r)
+post_resource_slopes ihs_hh_income_pc_imp, ///
+    spec("D4_joint_linear_probability") modeln(`model_N') df(`model_df')
+post_resource_slopes ihs_total_asset_same, ///
+    spec("D4_joint_linear_probability") modeln(`model_N') df(`model_df')
+post_probability_contrasts, spec("D4_joint_linear_probability") modeln(`model_N')
+quietly logit stem i.female##i.housing_portfolio ///
+    i.female#c.ihs_hh_income_pc_imp ///
+    i.female#c.ihs_total_asset_same ///
+    $C_OUTCOME_WEALTH if income_miss == 0, vce(robust)
+local model_N = e(N)
+post_resource_slopes ihs_hh_income_pc_imp, ///
+    spec("D6_complete_case_logit") modeln(`model_N')
+post_resource_slopes ihs_total_asset_same, ///
+    spec("D6_complete_case_logit") modeln(`model_N')
+post_probability_contrasts, spec("D6_complete_case_logit") modeln(`model_N')
 
 postclose `contrasts'
 postclose `cells'
